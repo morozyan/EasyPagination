@@ -1,0 +1,52 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyPagination.Core", "EasyPagination.Core\EasyPagination.Core.csproj", "{57C4F437-0C86-4599-AF8F-F25FFDDA9092}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyPagination.Core.Tests", "EasyPagination.Core.Tests\EasyPagination.Core.Tests.csproj", "{3B1E88C8-F473-4EE0-9F1A-59C81F19CBFE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyPagination.EfCore", "EasyPagination.EfCore\EasyPagination.EfCore.csproj", "{8CA16D73-3165-480E-A839-620C1AF2DFBB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyPagination.EfCore.Tests", "EasyPagination.EfCore.Tests\EasyPagination.EfCore.Tests.csproj", "{2B616BF1-4C62-4FF1-9C6B-E08EDD665FAC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyPagination.Async", "EasyPagination.Async\EasyPagination.Async.csproj", "{DD353EF7-7462-4BCC-AD41-5BF42FBBA9AD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyPagination.Async.Tests", "EasyPagination.Async.Tests\EasyPagination.Async.Tests.csproj", "{61227FAC-E11C-4159-B90E-E3844AB95371}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyPagination.ReadMeExamples", "EasyPagination.ReadMeExamples\EasyPagination.ReadMeExamples.csproj", "{DD4BBADD-2C37-4D36-B6A5-F783C9552CAE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{57C4F437-0C86-4599-AF8F-F25FFDDA9092}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{57C4F437-0C86-4599-AF8F-F25FFDDA9092}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{57C4F437-0C86-4599-AF8F-F25FFDDA9092}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{57C4F437-0C86-4599-AF8F-F25FFDDA9092}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3B1E88C8-F473-4EE0-9F1A-59C81F19CBFE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3B1E88C8-F473-4EE0-9F1A-59C81F19CBFE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3B1E88C8-F473-4EE0-9F1A-59C81F19CBFE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3B1E88C8-F473-4EE0-9F1A-59C81F19CBFE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8CA16D73-3165-480E-A839-620C1AF2DFBB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8CA16D73-3165-480E-A839-620C1AF2DFBB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8CA16D73-3165-480E-A839-620C1AF2DFBB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8CA16D73-3165-480E-A839-620C1AF2DFBB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2B616BF1-4C62-4FF1-9C6B-E08EDD665FAC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2B616BF1-4C62-4FF1-9C6B-E08EDD665FAC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2B616BF1-4C62-4FF1-9C6B-E08EDD665FAC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2B616BF1-4C62-4FF1-9C6B-E08EDD665FAC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DD353EF7-7462-4BCC-AD41-5BF42FBBA9AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DD353EF7-7462-4BCC-AD41-5BF42FBBA9AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DD353EF7-7462-4BCC-AD41-5BF42FBBA9AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DD353EF7-7462-4BCC-AD41-5BF42FBBA9AD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{61227FAC-E11C-4159-B90E-E3844AB95371}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{61227FAC-E11C-4159-B90E-E3844AB95371}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{61227FAC-E11C-4159-B90E-E3844AB95371}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{61227FAC-E11C-4159-B90E-E3844AB95371}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DD4BBADD-2C37-4D36-B6A5-F783C9552CAE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DD4BBADD-2C37-4D36-B6A5-F783C9552CAE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DD4BBADD-2C37-4D36-B6A5-F783C9552CAE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DD4BBADD-2C37-4D36-B6A5-F783C9552CAE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

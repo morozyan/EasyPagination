@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>Exe</OutputType>
+        <TargetFramework>netcoreapp3.1</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>disable</Nullable>
+        <LangVersion>10</LangVersion>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\EasyPagination.Core\EasyPagination.Core.csproj" />
+      <ProjectReference Include="..\EasyPagination.EfCore.Tests\EasyPagination.EfCore.Tests.csproj" />
+      <ProjectReference Include="..\EasyPagination.EfCore\EasyPagination.EfCore.csproj" />
+    </ItemGroup>
+
+</Project>

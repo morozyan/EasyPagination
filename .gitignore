@@ -1,0 +1,8 @@
+bin/
+obj/
+/packages/
+riderModule.iml
+/_ReSharper.Caches/
+EasyPagination.sln.DotSettings.user
+.idea/
+.vs/
