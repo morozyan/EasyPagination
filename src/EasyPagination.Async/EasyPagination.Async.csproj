@@ -17,5 +17,6 @@
     <Description>EasyPagination extensions for IAsyncEnumerable.</Description>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <RepositoryUrl>https://github.com/morozyan/EasyPagination</RepositoryUrl>
+    <PackageTags>pagination;paging;extensions;query;async</PackageTags>
   </PropertyGroup>
 </Project>

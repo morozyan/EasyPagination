@@ -9,6 +9,7 @@
     <Description>EasyPagination is a .NET library for providing paging functionality on IEnumerable/IQueryable collections.</Description>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <RepositoryUrl>https://github.com/morozyan/EasyPagination</RepositoryUrl>
+    <PackageTags>pagination;paging;extensions;query</PackageTags>
   </PropertyGroup>
   
 </Project>
