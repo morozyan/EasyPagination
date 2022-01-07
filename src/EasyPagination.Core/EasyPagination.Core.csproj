@@ -1,7 +1,14 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-    <PropertyGroup>
-        <TargetFramework>netcoreapp3.1</TargetFramework>
-    </PropertyGroup>
-
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+  
+  <PropertyGroup>
+    <Version>1.0.0-alpha</Version>
+    <Description>EasyPagination is a .NET library for providing paging functionality on IEnumerable/IQueryable collections.</Description>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <RepositoryUrl>https://github.com/morozyan/EasyPagination</RepositoryUrl>
+  </PropertyGroup>
+  
 </Project>

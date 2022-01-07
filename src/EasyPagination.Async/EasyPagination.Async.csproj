@@ -1,15 +1,21 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-    <PropertyGroup>
-        <TargetFramework>netcoreapp3.1</TargetFramework>
-    </PropertyGroup>
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
 
-    <ItemGroup>
-      <ProjectReference Include="..\EasyPagination.Core\EasyPagination.Core.csproj" />
-    </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\EasyPagination.Core\EasyPagination.Core.csproj" />
+  </ItemGroup>
 
-    <ItemGroup>
-      <PackageReference Include="System.Linq.Async" Version="5.1.0" />
-    </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="System.Linq.Async" Version="5.1.0" />
+  </ItemGroup>
 
+  <PropertyGroup>
+    <Version>1.0.0-alpha</Version>
+    <Description>EasyPagination extensions for IAsyncEnumerable.</Description>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <RepositoryUrl>https://github.com/morozyan/EasyPagination</RepositoryUrl>
+  </PropertyGroup>
 </Project>
