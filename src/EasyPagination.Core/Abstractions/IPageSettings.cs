@@ -2,7 +2,7 @@
 {
     public interface IPageSettings
     {
-        int? CurrentPage { get; internal set; }
+        int? CurrentPage { get; set;}
         int PageCount { get; }
         int ItemsCount { get; }
         int PageSize { get; }
