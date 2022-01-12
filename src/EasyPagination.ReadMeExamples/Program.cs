@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
 using EasyPagination.EfCore.Tests.Common;
 using EasyPagination.Core.Tests.Common;
@@ -13,10 +14,11 @@ EntityDbContext context = CreateContext();
 
 IPage<Entity> firstPage = context.Entities.GetPage(new PageOptions
 {
-    PageSize = 10
+    PageSize = 10,
+    Page = 1
 });
 
-DoSomeWork(firstPage.Items, firstPage.Settings.PageCount, firstPage.Settings.CurrentPage, firstPage.Settings.PageSize);
+DoSomeWork(firstPage.Items);
 
 IReadOnlyList<Entity> firstPageItems = context.Entities.GetItems(new PageOptions
 {
@@ -25,10 +27,10 @@ IReadOnlyList<Entity> firstPageItems = context.Entities.GetItems(new PageOptions
 
 var page = firstPage;
 
-while (page != null)
+while (page.HasNextPage)
 {
-    DoSomeWork(page.Items, page.Settings.PageCount, page.Settings.CurrentPage, page.Settings.PageSize);
     page = page.NextPage();
+    DoSomeWork(page.Items);
 }
 
 IAsyncPage<Entity> pageForInMemoryMapping = await context.Entities
@@ -37,9 +39,24 @@ IAsyncPage<Entity> pageForInMemoryMapping = await context.Entities
 IAsyncPage<string> formattedDataPage = pageForInMemoryMapping
     .Map(o => $"{o.Id} {o.CreatedDate:dd/MM/yyyy hh:mm}");
 
-DoSomeWork(formattedDataPage.Items, formattedDataPage.Settings.PageCount, formattedDataPage.Settings.CurrentPage, formattedDataPage.Settings.PageSize);
+DoSomeWork(formattedDataPage.Items);
 
-void DoSomeWork<T>(IReadOnlyList<T> readOnlyList, int settingsPageCount, int? currentPage, int settingsPageSize)
+firstPage = context.Entities.GetPage(new PageOptions(1, 1000));
+firstPage = context.Entities.GetPage(new PageOptions());
+firstPage = context.Entities.GetPage(null);
+firstPage = context.Entities.GetPage();
+
+IPage<Entity> wrongPage = context.Entities.GetPage(new PageOptions
+{
+    Page = 0
+});
+
+Console.WriteLine(wrongPage.Settings.CurrentPage.HasValue); // False
+Console.WriteLine(wrongPage.Items.Count); // 0
+Console.WriteLine(wrongPage.HasNextPage); // False
+Console.WriteLine(wrongPage.NextPage() == null); // True
+
+void DoSomeWork<T>(IReadOnlyList<T> readOnlyList)
 {
     
 }

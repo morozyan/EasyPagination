@@ -8,10 +8,10 @@ namespace EasyPagination.Core.Extensions
 {
     public static class QueryableExtensions
     {
-        public static IPage<T> GetPage<T>(this IQueryable<T> queryable, PageOptions options)
-            => new QueryablePager<T>(queryable).GetPage(options);
+        public static IPage<T> GetPage<T>(this IQueryable<T> queryable, PageOptions options = null)
+            => new QueryablePager<T>(queryable).GetPage(options ?? new PageOptions());
 
-        public static IReadOnlyList<T> GetItems<T>(this IQueryable<T> queryable, PageOptions options)
-            => new QueryablePager<T>(queryable).GetItems(options);
+        public static IReadOnlyList<T> GetItems<T>(this IQueryable<T> queryable, PageOptions options = null)
+            => new QueryablePager<T>(queryable).GetItems(options ?? new PageOptions());
     }
 }

@@ -23,7 +23,7 @@ namespace EasyPagination.Core.Models
 
         protected PageOptions GetNextPageOptions() => CreatePageOptions(this, 1);
 
-        protected bool NoNextPage => !Settings.CurrentPage.HasValue || Settings.CurrentPage == Settings.PageCount;
+        public bool HasNextPage => !(!Settings.CurrentPage.HasValue || Settings.CurrentPage == Settings.PageCount);
 
         public void AddItems(PageOptions options, IReadOnlyList<T> items)
         {
