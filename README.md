@@ -91,7 +91,7 @@ firstPage = context.Entities.GetPage(new PageOptions());
 firstPage = context.Entities.GetPage(null);
 firstPage = context.Entities.GetPage();
 ```
-If the requested page number is non-positive or too big, page without will be provided:
+If the requested page number is non-positive or too big, page without items will be provided:
 ```c#
 IPage<Entity> wrongPage = context.Entities.GetPage(new PageOptions
 {
