@@ -4,13 +4,17 @@ EasyPagination is a .NET library for providing paging functionality on IEnumerab
 ### Installation
 Package Manager Console
 ```bash
-Install-Package 
+Install-Package EasyPagination.Core
+Install-Package EasyPagination.EfCore
+Install-Package EasyPagination.Async
 ```
 
 .Net CLI
 
 ```bash
-dotnet add package 
+dotnet add package EasyPagination.Core
+dotnet add package EasyPagination.EfCore
+dotnet add package EasyPagination.Async
 ```
 
 ### Usage
