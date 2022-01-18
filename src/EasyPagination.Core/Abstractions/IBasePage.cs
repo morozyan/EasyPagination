@@ -6,5 +6,6 @@ namespace EasyPagination.Core.Abstractions
     {
         IReadOnlyList<T> Items { get; }
         IPageSettings Settings { get; }
+        bool HasNextPage { get; }
     }
 }

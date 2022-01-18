@@ -7,10 +7,10 @@ namespace EasyPagination.Core.Extensions
 {
     public static class EnumerableExtensions
     {
-        public static IPage<T> GetPage<T>(this IEnumerable<T> enumerable, PageOptions options) 
-            => new EnumerablePager<T>(enumerable).GetPage(options);
+        public static IPage<T> GetPage<T>(this IEnumerable<T> enumerable, PageOptions options = null) 
+            => new EnumerablePager<T>(enumerable).GetPage(options ?? new PageOptions());
 
-        public static IReadOnlyList<T> GetItems<T>(this IEnumerable<T> enumerable, PageOptions options) 
-            => new EnumerablePager<T>(enumerable).GetItems(options);
+        public static IReadOnlyList<T> GetItems<T>(this IEnumerable<T> enumerable, PageOptions options = null) 
+            => new EnumerablePager<T>(enumerable).GetItems(options ?? new PageOptions());
     }
 }

@@ -8,10 +8,10 @@ namespace EasyPagination.Async.Extensions
 {
     public static class AsyncEnumerableExtensions
     {
-        public static Task<IAsyncPage<T>> GetPageAsync<T>(this IAsyncEnumerable<T> asyncEnumerable, PageOptions options)
-            => new AsyncEnumerablePager<T>(asyncEnumerable).GetPageAsync(options);
+        public static Task<IAsyncPage<T>> GetPageAsync<T>(this IAsyncEnumerable<T> asyncEnumerable, PageOptions options = null)
+            => new AsyncEnumerablePager<T>(asyncEnumerable).GetPageAsync(options ?? new PageOptions());
 
-        public static Task<IReadOnlyList<T>> GetItemsAsync<T>(this IAsyncEnumerable<T> asyncEnumerable, PageOptions options)
-            => new AsyncEnumerablePager<T>(asyncEnumerable).GetItemsAsync(options);
+        public static Task<IReadOnlyList<T>> GetItemsAsync<T>(this IAsyncEnumerable<T> asyncEnumerable, PageOptions options = null)
+            => new AsyncEnumerablePager<T>(asyncEnumerable).GetItemsAsync(options ?? new PageOptions());
     }
 }

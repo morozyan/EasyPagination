@@ -15,6 +15,6 @@ namespace EasyPagination.Core.Models
         }
 
         public Task<IAsyncPage<T>> NextPageAsync() =>
-            NoNextPage ? Task.FromResult<IAsyncPage<T>>(null) : _pager.GetPageAsync(GetNextPageOptions());
+            HasNextPage ? _pager.GetPageAsync(GetNextPageOptions()) : Task.FromResult<IAsyncPage<T>>(null);
     }
 }

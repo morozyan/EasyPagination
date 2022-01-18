@@ -4,13 +4,17 @@ EasyPagination is a .NET library for providing paging functionality on IEnumerab
 ### Installation
 Package Manager Console
 ```bash
-Install-Package 
+Install-Package EasyPagination.Core
+Install-Package EasyPagination.EfCore
+Install-Package EasyPagination.Async
 ```
 
 .Net CLI
 
 ```bash
-dotnet add package 
+dotnet add package EasyPagination.Core
+dotnet add package EasyPagination.EfCore
+dotnet add package EasyPagination.Async
 ```
 
 ### Usage
@@ -37,10 +41,11 @@ EntityDbContext context = CreateContext();
 
 IPage<Entity> firstPage = context.Entities.GetPage(new PageOptions()
 {
-    PageSize = 10
+    PageSize = 10,
+    Page = 1
 });
 
-DoSomeWork(firstPage.Items, firstPage.Settings.PageCount, firstPage.Settings.CurrentPage, firstPage.Settings.PageSize);
+DoSomeWork(firstPage.Items);
 ```
 
 Or use `GetItems` method if you don't need page info:
@@ -55,17 +60,16 @@ Next pages could be requested easily:
 ```c#
 var page = firstPage;
 
-while (page != null)
+while (page.HasNextPage)
 {
-    DoSomeWork(page.Items, page.Settings.PageCount, page.Settings.CurrentPage, page.Settings.PageSize);
-    
     page = page.NextPage();
+    DoSomeWork(page.Items);
 }
 ```
 
 Async methods for EF Core (or IAsyncEnumerable) are also available:
 ```c#
-using EasyPagination.EfCore.Extensions;
+using EasyPagination.EfCore.Extensions; // or EasyPagination.Async.Extensions for IAsyncEnumerable 
 
 IAsyncPage<Entity> pageForInMemoryMapping = await context.Entities
     .GetPageAsync(new PageOptions());
@@ -76,6 +80,27 @@ page could be transformed into more useful form without loosing page settings:
 IAsyncPage<string> formattedDataPage = pageForInMemoryMapping
     .Map(o => $"{o.Id} {o.CreatedDate:dd/MM/yyyy hh:mm}");
     
-DoSomeWork(formattedDataPage.Items, formattedDataPage.Settings.PageCount, formattedDataPage.Settings.CurrentPage, formattedDataPage.Settings.PageSize);
+DoSomeWork(formattedDataPage.Items);
 ```
 
+The calls below are equivalent. `GetItems`, `GetPageAsync`, `GetItemsAsync` provide the same behavior.
+```c#
+
+firstPage = context.Entities.GetPage(new PageOptions(1, 1000));
+firstPage = context.Entities.GetPage(new PageOptions());
+firstPage = context.Entities.GetPage(null);
+firstPage = context.Entities.GetPage();
+```
+If the requested page number is non-positive or too big, page without will be provided:
+```c#
+IPage<Entity> wrongPage = context.Entities.GetPage(new PageOptions
+{
+    Page = 0
+});
+
+Console.WriteLine(wrongPage.Settings.CurrentPage.HasValue); // False
+Console.WriteLine(wrongPage.Items.Count); // 0
+Console.WriteLine(wrongPage.HasNextPage); // False
+Console.WriteLine(wrongPage.NextPage() == null); // True
+
+```

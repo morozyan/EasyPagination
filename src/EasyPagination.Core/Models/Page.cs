@@ -13,7 +13,7 @@ namespace EasyPagination.Core.Models
             _pager = pager;
         }
 
-        public IPage<T> NextPage() => NoNextPage ? null : _pager.GetPage(GetNextPageOptions());
+        public IPage<T> NextPage() => HasNextPage ? _pager.GetPage(GetNextPageOptions()) : null;
         
     }
 }
