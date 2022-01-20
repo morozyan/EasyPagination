@@ -1,10 +1,9 @@
 ﻿using System;
 
-namespace EasyPagination.Core.Tests.Common
+namespace EasyPagination.Core.Tests.Common;
+
+public class Entity
 {
-    public class Entity
-    {
-        public int Id { get; set; }
-        public DateTime CreatedDate { get; set; }
-    }
+    public int Id { get; set; }
+    public DateTime CreatedDate { get; set; }
 }

@@ -1,103 +1,96 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using EasyPagination.Async.Extensions;
-using EasyPagination.Core.Extensions;
-using EasyPagination.Core.Models;
-using EasyPagination.Core.Tests.Common;
+﻿using EasyPagination.Core.Extensions;
 using Shouldly;
 using Xunit;
 
-namespace EasyPagination.Async.Tests
+namespace EasyPagination.Async.Tests;
+
+public class AsyncPageTests
 {
-    public class AsyncPageTests
+    private readonly ICollection<Entity> _items;
+
+    public AsyncPageTests()
     {
-        private readonly ICollection<Entity> _items;
+        _items = EntityGenerator.Create(2500);
+    }
 
-        public AsyncPageTests()
+    [Fact]
+    public async Task Should_provide_next_page_when_it_is_available()
+    {
+        var pageOptions = new PageOptions
         {
-            _items = EntityGenerator.Create(2500);
-        }
+            PageSize = 100
+        };
 
-        [Fact]
-        public async Task Should_provide_next_page_when_it_is_available()
+        var firstPage = await _items.ToAsyncEnumerable().GetPageAsync(pageOptions);
+        var secondPage = await firstPage.NextPageAsync();
+
+        secondPage.Items.Count.ShouldBe(100);
+        secondPage.Items.ShouldAllBe(i => 101 <= i.Id && i.Id <= 200);
+        secondPage.Settings.CurrentPage.ShouldBe(2);
+        secondPage.Settings.PageSize.ShouldBe(firstPage.Settings.PageSize);
+        secondPage.Settings.PageSize.ShouldBe(100);
+    }
+
+    [Fact]
+    public async Task Should_provide_null_for_next_page_when_current_page_is_last()
+    {
+        var pageOptions = new PageOptions
         {
-            var pageOptions = new PageOptions
-            {
-                PageSize = 100
-            };
+            Page = 3
+        };
 
-            var firstPage = await _items.ToAsyncEnumerable().GetPageAsync(pageOptions);
-            var secondPage = await firstPage.NextPageAsync();
+        var page = await _items.ToAsyncEnumerable().GetPageAsync(pageOptions);
 
-            secondPage.Items.Count.ShouldBe(100);
-            secondPage.Items.ShouldAllBe(i => 101 <= i.Id && i.Id <= 200);
-            secondPage.Settings.CurrentPage.ShouldBe(2);
-            secondPage.Settings.PageSize.ShouldBe(firstPage.Settings.PageSize);
-            secondPage.Settings.PageSize.ShouldBe(100);
-        }
+        var nextPage = await page.NextPageAsync();
 
-        [Fact]
-        public async Task Should_provide_null_for_next_page_when_current_page_is_last()
-        {
-            var pageOptions = new PageOptions
-            {
-                Page = 3
-            };
+        nextPage.ShouldBeNull();
+    }
 
-            var page = await _items.ToAsyncEnumerable().GetPageAsync(pageOptions);
+    [Fact]
+    public async Task Should_map_page()
+    {
+        var page = await _items.ToAsyncEnumerable().GetPageAsync(new PageOptions());
 
-            var nextPage = await page.NextPageAsync();
+        var mappedPage = page.Map(o => o.Id);
 
-            nextPage.ShouldBeNull();
-        }
+        mappedPage.Items.First().ShouldBe(1);
+    }
 
-        [Fact]
-        public async Task Should_map_page()
-        {
-            var page = await _items.ToAsyncEnumerable().GetPageAsync(new PageOptions());
+    [Fact]
+    public async Task Should_provide_next_page_when_current_page_is_mapped()
+    {
+        var page = await _items.ToAsyncEnumerable().GetPageAsync(new PageOptions());
 
-            var mappedPage = page.Map(o => o.Id);
+        var mappedPage = page.Map(o => o.Id);
 
-            mappedPage.Items.First().ShouldBe(1);
-        }
+        var nextPage = await mappedPage.NextPageAsync();
 
-        [Fact]
-        public async Task Should_provide_next_page_when_current_page_is_mapped()
-        {
-            var page = await _items.ToAsyncEnumerable().GetPageAsync(new PageOptions());
+        nextPage.Items.First().ShouldBe(1001);
+    }
 
-            var mappedPage = page.Map(o => o.Id);
+    [Fact]
+    public async Task Should_map_page_when_current_page_is_mapped()
+    {
+        var page = await _items.ToAsyncEnumerable().GetPageAsync(new PageOptions());
 
-            var nextPage = await mappedPage.NextPageAsync();
+        var mappedPage = page.Map(o => o.Id);
 
-            nextPage.Items.First().ShouldBe(1001);
-        }
+        var newMappedPage = mappedPage.Map(o => -o);
 
-        [Fact]
-        public async Task Should_map_page_when_current_page_is_mapped()
-        {
-            var page = await _items.ToAsyncEnumerable().GetPageAsync(new PageOptions());
-
-            var mappedPage = page.Map(o => o.Id);
-
-            var newMappedPage = mappedPage.Map(o => -o);
-
-            newMappedPage.Items.First().ShouldBe(-1);
-        }
+        newMappedPage.Items.First().ShouldBe(-1);
+    }
         
-        [Fact]
-        public async Task Should_map_wrong_page_without_errors()
+    [Fact]
+    public async Task Should_map_wrong_page_without_errors()
+    {
+        var page = await _items.ToAsyncEnumerable().GetPageAsync(new PageOptions
         {
-            var page = await _items.ToAsyncEnumerable().GetPageAsync(new PageOptions
-            {
-                Page = 6
-            });
+            Page = 6
+        });
             
-            var mappedPage = page.Map(o => o.Id);
+        var mappedPage = page.Map(o => o.Id);
             
-            mappedPage.Items.Count.ShouldBe(0);
-            mappedPage.Settings.CurrentPage.ShouldBeNull();
-        }
+        mappedPage.Items.Count.ShouldBe(0);
+        mappedPage.Settings.CurrentPage.ShouldBeNull();
     }
 }

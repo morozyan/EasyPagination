@@ -1,10 +1,9 @@
-﻿namespace EasyPagination.Core.Abstractions
+﻿namespace EasyPagination.Core.Abstractions;
+
+public interface IPageSettings
 {
-    public interface IPageSettings
-    {
-        int? CurrentPage { get; internal set; }
-        int PageCount { get; }
-        int ItemsCount { get; }
-        int PageSize { get; }
-    }
+    int? CurrentPage { get; internal set; }
+    int PageCount { get; }
+    int ItemsCount { get; }
+    int PageSize { get; }
 }

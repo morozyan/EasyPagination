@@ -4,18 +4,17 @@ using EasyPagination.Core.Extensions;
 using EasyPagination.Core.Models;
 using EasyPagination.Core.Tests.Common;
 
-namespace EasyPagination.Core.Tests
-{
-    public class EnumerableExtensionsTests : BaseExtensionsTests
-    {
-        protected override IBasePage<Entity> GetPage(PageOptions pageOptions)
-        {
-            return Items.GetPage(pageOptions) as BasePage<Entity>;
-        }
+namespace EasyPagination.Core.Tests;
 
-        protected override IReadOnlyList<Entity> GetItems(PageOptions pageOptions)
-        {
-            return Items.GetItems(pageOptions);
-        }
+public class EnumerableExtensionsTests : BaseExtensionsTests
+{
+    protected override IBasePage<Entity> GetPage(PageOptions pageOptions)
+    {
+        return Items.GetPage(pageOptions) as BasePage<Entity>;
+    }
+
+    protected override IReadOnlyList<Entity> GetItems(PageOptions pageOptions)
+    {
+        return Items.GetItems(pageOptions);
     }
 }

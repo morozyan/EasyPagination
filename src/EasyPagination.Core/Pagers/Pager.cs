@@ -1,48 +1,45 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using EasyPagination.Core.Abstractions;
+﻿using EasyPagination.Core.Abstractions;
 using EasyPagination.Core.Helpers;
 using EasyPagination.Core.Models;
 
-namespace EasyPagination.Core.Pagers
+namespace EasyPagination.Core.Pagers;
+
+public abstract class Pager<T>
 {
-    public abstract class Pager<T>
+    public IPage<T> GetPage(PageOptions options)
     {
-        public IPage<T> GetPage(PageOptions options)
+        if (options == null)
         {
-            if (options == null)
-            {
-                return null;
-            }
+            return null;
+        }
             
-            var itemsCount = GetItemsCount();
+        var itemsCount = GetItemsCount();
 
-            var page = Create(options, itemsCount);
+        var page = Create(options, itemsCount);
 
-            if (PageOptionsHelper.IsPageNumberIncorrect(page, options))
-            {
-                return page;
-            }
-
-            var items = GetItemsForPage(options);
-
-            page.AddItems(options, items);
+        if (PageOptionsHelper.IsPageNumberIncorrect(page, options))
+        {
             return page;
         }
 
-        public IReadOnlyList<T> GetItems(PageOptions options) 
-            => PageOptionsHelper.IsNonPositivePage(options)
-                ? Enumerable.Empty<T>().ToList()
-                : GetItemsForPage(options);
-        
-        protected abstract IReadOnlyList<T> GetItemsForPage(PageOptions options);
+        var items = GetItemsForPage(options);
 
-        protected abstract int GetItemsCount();
+        page.AddItems(options, items);
+        return page;
+    }
+
+    public IReadOnlyList<T> GetItems(PageOptions options) 
+        => PageOptionsHelper.IsNonPositivePage(options)
+            ? Enumerable.Empty<T>().ToList()
+            : GetItemsForPage(options);
         
-        private Page<T> Create(PageOptions options, int itemsCount)
-        {
-            var pageCount = PageOptionsHelper.CalculatePageCount(options, itemsCount);
-            return new Page<T>(pageCount, itemsCount, options.PageSize, this);
-        }
+    protected abstract IReadOnlyList<T> GetItemsForPage(PageOptions options);
+
+    protected abstract int GetItemsCount();
+        
+    private Page<T> Create(PageOptions options, int itemsCount)
+    {
+        var pageCount = PageOptionsHelper.CalculatePageCount(options, itemsCount);
+        return new Page<T>(pageCount, itemsCount, options.PageSize, this);
     }
 }

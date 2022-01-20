@@ -1,13 +1,12 @@
 ﻿using EasyPagination.Core.Abstractions;
 
-namespace EasyPagination.Core.Models
-{
-     public class PageSettings : IPageSettings
-     {
-         int? IPageSettings.CurrentPage { get; set; }
+namespace EasyPagination.Core.Models;
 
-         public int PageCount { get; set; }
-        public int ItemsCount { get; set; }
-        public int PageSize { get; set; }
-    }
+public class PageSettings : IPageSettings
+{
+    int? IPageSettings.CurrentPage { get; set; }
+
+    public int PageCount { get; init; }
+    public int ItemsCount { get; init; }
+    public int PageSize { get; init; }
 }

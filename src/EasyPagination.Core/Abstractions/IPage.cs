@@ -1,7 +1,6 @@
-﻿namespace EasyPagination.Core.Abstractions
+﻿namespace EasyPagination.Core.Abstractions;
+
+public interface IPage<out T> : IBasePage<T>
 {
-    public interface IPage<T> : IBasePage<T>
-    {
-        IPage<T> NextPage();
-    }
+    IPage<T> NextPage();
 }

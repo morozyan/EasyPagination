@@ -1,0 +1,9 @@
+﻿global using System.Collections.Generic;
+global using System.Threading.Tasks;
+global using System.Linq;
+global using EasyPagination.Async.Pagers;
+global using EasyPagination.Core.Abstractions;
+global using EasyPagination.Core.Models;
+global using EasyPagination.Core.Tests;
+global using EasyPagination.Core.Tests.Common;
+global using EasyPagination.Async.Extensions;

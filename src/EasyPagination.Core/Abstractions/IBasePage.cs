@@ -1,11 +1,8 @@
-﻿using System.Collections.Generic;
+﻿namespace EasyPagination.Core.Abstractions;
 
-namespace EasyPagination.Core.Abstractions
+public interface IBasePage<out T>
 {
-    public interface IBasePage<out T>
-    {
-        IReadOnlyList<T> Items { get; }
-        IPageSettings Settings { get; }
-        bool HasNextPage { get; }
-    }
+    IReadOnlyList<T> Items { get; }
+    IPageSettings Settings { get; }
+    bool HasNextPage { get; }
 }

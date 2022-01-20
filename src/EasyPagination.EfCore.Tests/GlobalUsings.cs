@@ -1,0 +1,1 @@
+﻿global using EasyPagination.Core.Tests.Common;

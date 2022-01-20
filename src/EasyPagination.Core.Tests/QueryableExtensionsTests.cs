@@ -5,18 +5,17 @@ using EasyPagination.Core.Extensions;
 using EasyPagination.Core.Models;
 using EasyPagination.Core.Tests.Common;
 
-namespace EasyPagination.Core.Tests
-{
-    public class QueryableExtensionsTests : BaseExtensionsTests
-    {
-        protected override IBasePage<Entity> GetPage(PageOptions pageOptions)
-        {
-            return Items.AsQueryable().GetPage(pageOptions) as BasePage<Entity>;
-        }
+namespace EasyPagination.Core.Tests;
 
-        protected override IReadOnlyList<Entity> GetItems(PageOptions pageOptions)
-        {
-            return Items.AsQueryable().GetItems(pageOptions);
-        }
+public class QueryableExtensionsTests : BaseExtensionsTests
+{
+    protected override IBasePage<Entity> GetPage(PageOptions pageOptions)
+    {
+        return Items.AsQueryable().GetPage(pageOptions) as BasePage<Entity>;
+    }
+
+    protected override IReadOnlyList<Entity> GetItems(PageOptions pageOptions)
+    {
+        return Items.AsQueryable().GetItems(pageOptions);
     }
 }

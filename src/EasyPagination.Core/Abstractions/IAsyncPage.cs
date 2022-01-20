@@ -1,9 +1,6 @@
-﻿using System.Threading.Tasks;
+﻿namespace EasyPagination.Core.Abstractions;
 
-namespace EasyPagination.Core.Abstractions
+public interface IAsyncPage<T> : IBasePage<T>
 {
-    public interface IAsyncPage<T> : IBasePage<T>
-    {
-        Task<IAsyncPage<T>> NextPageAsync();
-    }
+    Task<IAsyncPage<T>> NextPageAsync();
 }

@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using EasyPagination.EfCore.Tests.Common;
+﻿using EasyPagination.EfCore.Tests.Common;
 using EasyPagination.Core.Tests.Common;
 
 using EasyPagination.Core.Abstractions;
